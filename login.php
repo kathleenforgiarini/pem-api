@@ -4,7 +4,10 @@
     header("Access-Control-Allow-Methods: Get, Post");
     header("Access-Control-Allow-Headers: Content-Type");
     
-    $connection = new mysqli("127.0.0.1", "root", "", "dbpem");
+    require_once 'dbConfig.php';
+    
+    global $connection; 
+    
     if (mysqli_connect_error()){
         echo mysqli_connect_error();
         exit();
