@@ -18,6 +18,8 @@
         $email = $dData['email'];
         $pass = $dData['pass'];
         $result = "";
+        $name = "";
+        $photo = "";
         
         if ($email != "" and $pass != ""){
             $sql = "SELECT * FROM user WHERE email = '$email'";
@@ -28,7 +30,9 @@
                     $result = "Invalid password!";
                 }
                 else {
-                    $result = "Loggedin successfully! Redirecting...";
+                    $result = "Logged-in successfully! Redirecting...";
+                    $name = $row['name'];
+                    $photo = base64_encode($row["photo"]);
                 }
                
             } else {
@@ -39,7 +43,7 @@
         }
         
         $connection -> close();
-        $response[] = array("result" => $result);
+        $response = array("result" => $result, "name" => $name, "photo" => $photo, "email" => $email);
         echo json_encode($response);
     }
 ?>
