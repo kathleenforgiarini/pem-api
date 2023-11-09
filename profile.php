@@ -26,8 +26,6 @@ if (mysqli_connect_error()) {
             $name = $row['name'];
             $photo = base64_encode($row["photo"]);
             $password = $row['password'];
-        } else {
-            $result = "Invalid email!";
         }
     }
 
