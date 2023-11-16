@@ -11,13 +11,16 @@ if (mysqli_connect_error()) {
     echo mysqli_connect_error();
     exit();
 } else {
+    $eData = file_get_contents("php://input");
+    $dData = json_decode($eData, true);
+    $userId = $dData['userId'];
     $list = array();
     
-    $sql = "SELECT * FROM list WHERE id = '1'";
+    $sql = "SELECT * FROM list WHERE user_id = $userId";
     $res = mysqli_query($connection, $sql);
     if (mysqli_num_rows($res) != 0) {
-        while ($row = mysqli_fetch_assoc($res)) {
-            $list = array(
+        while ($row = mysqli_fetch_array($res)) {
+            $list[] = array(
                 "id" => $row['id'],
                 "name" => $row['name'],
                 "description" => $row['description'],
