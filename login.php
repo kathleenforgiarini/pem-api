@@ -18,6 +18,7 @@
         $email = $dData['email'];
         $pass = $dData['pass'];
         $result = "";
+        $id = "";
         $name = "";
         $photo = "";
         
@@ -31,6 +32,7 @@
                 }
                 else {
                     $result = "Logged-in successfully! Redirecting...";
+                    $id = $row['id'];
                     $name = $row['name'];
                     $photo = base64_encode($row["photo"]);
                 }
@@ -43,7 +45,7 @@
         }
         
         $connection -> close();
-        $response = array("result" => $result, "name" => $name, "photo" => $photo, "email" => $email);
+        $response = array("result" => $result, "id" => $id, "name" => $name, "photo" => $photo, "email" => $email);
         echo json_encode($response);
     }
 ?>
