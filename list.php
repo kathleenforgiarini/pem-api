@@ -25,6 +25,7 @@ if (mysqli_connect_error()) {
                 "name" => $row['name'],
                 "description" => $row['description'],
                 "max_price" => $row['max_price'],
+                "total_price" => $row['total_price'],
                 "user_id" => $row['user_id'],
                 "list_cat_id" => $row['list_cat_id']
             );
