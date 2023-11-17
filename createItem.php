@@ -18,7 +18,7 @@ if (mysqli_connect_error()) {
     $quantity = $dData['quantity'];
     $price = $dData['price'];
     $list_id = $dData['list_id'];
-    $category = $dData['category'];
+    $category = $dData['item_cat_id'];
     $done = 0;
     $result = false;
     
