@@ -53,7 +53,7 @@ if (mysqli_connect_error()) {
     }
     
     else if ($category == "" && $name !== "") {
-        $sql = "SELECT * FROM list WHERE user_id = $userId AND name = '$name'";
+        $sql = "SELECT * FROM list WHERE user_id = $userId AND name LIKE '%$name%'";
         $res = mysqli_query($connection, $sql);
         if (mysqli_num_rows($res) != 0) {
             while ($row = mysqli_fetch_array($res)) {
@@ -71,7 +71,7 @@ if (mysqli_connect_error()) {
     }
     
     else if ($category !== "" && $name !== "") {
-        $sql = "SELECT * FROM list WHERE user_id = $userId AND name = '$name' AND list_cat_id = $category";
+        $sql = "SELECT * FROM list WHERE user_id = $userId AND name LIKE '%$name%' AND list_cat_id = $category";
         $res = mysqli_query($connection, $sql);
         if (mysqli_num_rows($res) != 0) {
             while ($row = mysqli_fetch_array($res)) {
