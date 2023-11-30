@@ -88,7 +88,7 @@ try{
             }
         }
         else {
-            echo json_encode("An error occurred, try again!");
+            echo json_encode("fail");
         }
     }
     
