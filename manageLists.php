@@ -79,29 +79,27 @@ try{
         $user_id = $dData['userId'];
         $category = $dData['selectedCategory'];
         $name = $dData['name'];
+        $lists = [];
         
         if ($category == '' && $name == ''){
             $l1 = new Lists();
             $l1->setUser_id($user_id);
             $listOfLists = $l1->getAllLists($connection);
-            
-            echo json_encode($listOfLists);
+            $lists = $listOfLists;
         }
         else if ($category !== "" && $name == "") {
             $l1 = new Lists();
             $l1->setUser_id($user_id);
             $l1->setList_cat_id($category);
             $listOfLists = $l1->getListsByCategory($connection);
-            
-            echo json_encode($listOfLists);
+            $lists = $listOfLists;
         }
         else if ($category == "" && $name !== "") {
             $l1 = new Lists();
             $l1->setUser_id($user_id);
             $l1->setName($name);
             $listOfLists = $l1->getListsByName($connection);
-            
-            echo json_encode($listOfLists);
+            $lists = $listOfLists;
         }
         else if ($category !== "" && $name !== "") {
             $l1 = new Lists();
@@ -109,11 +107,12 @@ try{
             $l1->setList_cat_id($category);
             $l1->setName($name);
             $listOfLists = $l1->getListsByNameAndCategory($connection);
-            
-            echo json_encode($listOfLists);
+            $lists = $listOfLists;
         } else {
-            echo json_encode("An error occurred, try again!");
+            $lists = [];
         }
+        
+        echo json_encode($lists);
         
         
     }

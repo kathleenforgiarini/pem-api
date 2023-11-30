@@ -214,10 +214,62 @@ class Lists {
         $id = $this->user_id;
         $name = $this->name;
         $list_cat_id = $this->list_cat_id;
-        $sqlStmt = "SELECT * FROM list WHERE user_id =:userId AND list_cat_id =:list_cat_id AND name LIKE:name";
+        $sqlStmt = "SELECT * FROM list WHERE user_id = :userId AND list_cat_id = :list_cat_id AND name LIKE :name";
         $prepare = $connection->prepare($sqlStmt);
         $prepare->bindValue(":userId", $id);
+        $prepare->bindValue(":list_cat_id", $list_cat_id);
         $prepare->bindValue(":name", '%' . $name . '%');
+        $prepare->execute();
+        $result = $prepare->fetchAll();
+        
+        if (sizeOf($result) > 0) {
+            return $result;
+        } else {
+            return [];
+        }
+        
+    }
+    
+    public function getListsById($connection){
+        $id = $this->id;
+        $sqlStmt = "SELECT * FROM list WHERE id =:id";
+        $prepare = $connection->prepare($sqlStmt);
+        $prepare->bindValue(":id", $id);
+        $prepare->execute();
+        $result = $prepare->fetchAll();
+        
+        if (sizeOf($result) > 0) {
+            return $result;
+        } else {
+            return [];
+        }
+        
+    }
+    
+    public function getListsByIdAndName($connection){
+        $id = $this->id;
+        $name = $this->name;
+        $sqlStmt = "SELECT * FROM list WHERE id =:id AND name LIKE :name";
+        $prepare = $connection->prepare($sqlStmt);
+        $prepare->bindValue(":id", $id);
+        $prepare->bindValue(":name", '%' . $name . '%');
+        $prepare->execute();
+        $result = $prepare->fetchAll();
+        
+        if (sizeOf($result) > 0) {
+            return $result;
+        } else {
+            return [];
+        }
+        
+    }
+    
+    public function getListsByIdAndCategory($connection){
+        $id = $this->id;
+        $list_cat_id = $this->list_cat_id;
+        $sqlStmt = "SELECT * FROM list WHERE id =:id AND list_cat_id =:list_cat_id";
+        $prepare = $connection->prepare($sqlStmt);
+        $prepare->bindValue(":id", $id);
         $prepare->bindValue(":list_cat_id", $list_cat_id);
         $prepare->execute();
         $result = $prepare->fetchAll();
@@ -229,6 +281,27 @@ class Lists {
         }
         
     }
+    
+    public function getListsByIdCategoryAndName($connection){
+        $id = $this->id;
+        $list_cat_id = $this->list_cat_id;
+        $name = $this->name;
+        $sqlStmt = "SELECT * FROM list WHERE id =:id AND list_cat_id =:list_cat_id AND name LIKE :name";
+        $prepare = $connection->prepare($sqlStmt);
+        $prepare->bindValue(":id", $id);
+        $prepare->bindValue(":list_cat_id", $list_cat_id);
+        $prepare->bindValue(":name", '%' . $name . '%');
+        $prepare->execute();
+        $result = $prepare->fetchAll();
+        
+        if (sizeOf($result) > 0) {
+            return $result;
+        } else {
+            return [];
+        }
+        
+    }
+    
     
 }
 ?>
