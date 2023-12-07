@@ -11,7 +11,7 @@ class User {
         $this->id = $id;
         $this->name = $name;
         $this->email = $email;
-        $this->password = $password;
+        $this->password = md5($password);
         $this->photo = $photo;
     }
     /**
@@ -83,7 +83,7 @@ class User {
      */
     public function setPassword($password)
     {
-        $this->password = $password;
+        $this->password = md5($password);
     }
 
     /**
